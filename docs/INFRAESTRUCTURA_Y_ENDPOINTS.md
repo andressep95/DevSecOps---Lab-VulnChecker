@@ -14,6 +14,21 @@
 
 ---
 
+## URLs de servicios
+
+| Servicio | URL | Notas |
+|---|---|---|
+| Frontend (Vercel) | `https://vulnchecker-frontend.vercel.app` | SPA React |
+| Backend API | `https://68.183.110.20.nip.io/api` | Spring Boot |
+| Backend Health | `https://68.183.110.20.nip.io/actuator/health` | `{"status":"UP"}` |
+| Dokploy UI | `http://68.183.110.20:3000` | Panel de despliegue |
+| Wazuh Dashboard | `https://217.216.48.103:4430` | admin / admin |
+| Wazuh Indexer API | `https://217.216.48.103:9200` | admin / admin |
+| PostgreSQL (externo) | `postgresql://admin:admin123@68.183.110.20:5432/vulncheck` | Cliente SQL externo |
+| PostgreSQL (interno) | `postgresql://admin:admin123@bilan-vulncheck-qg6jib:5432/vulncheck` | Entre contenedores Dokploy |
+
+---
+
 ## Credenciales de acceso — resumen rápido
 
 ### Máquina 1 — Contabo (Wazuh)
@@ -32,6 +47,16 @@
 | Dokploy UI | — | `http://68.183.110.20:3000` (primer acceso crea cuenta) |
 | PostgreSQL | `admin` | `admin123` |
 | Base de datos | `vulncheck` | — |
+
+**PostgreSQL — Conexión interna (entre contenedores Dokploy):**
+```
+postgresql://admin:admin123@bilan-vulncheck-qg6jib:5432/vulncheck
+```
+
+**PostgreSQL — Conexión externa (desde internet / cliente SQL):**
+```
+postgresql://admin:admin123@68.183.110.20:5432/vulncheck
+```
 
 ### Vercel (Frontend)
 
